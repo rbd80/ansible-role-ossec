@@ -1,13 +1,15 @@
 ---
+
 galaxy_info:
   author: Robert Donovan
   description: Simple OSSEC agent config
   license: apache
   min_ansible_version: 2.2
   platforms:
-    - name: Debian
-      versions:
-        - jessie
+  - name: Debian
+    versions:
+      - jessie
+      - stretch
   galaxy_tags:
     - debian
     - security
