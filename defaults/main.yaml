@@ -19,6 +19,11 @@ ossec_yum_pkgs: "{{
   }}"
 
 
+# Package to be installed (explicit version can be specified here)
+ossec_pkgs: "{{
+  ['ossec@execd', 'ossec@analysisd', 'ossec@logcollector', 'ossec@maild', 'ossec@syscheckd', 'ossec@monitord']
+  }}"
+
 
 ossecservice: "{{
   'ossec'
