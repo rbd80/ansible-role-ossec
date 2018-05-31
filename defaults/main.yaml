@@ -11,11 +11,11 @@ ossec_server: xxx.xxx.xxx.xxx
 
 # Package to be installed (explicit version can be specified here)
 ossec_apt_pkgs: "{{
-  ['gcc', 'httpd', 'telnet']
+  ['git', 'python-pexpect', 'build-essential']
   }}"
 
 ossec_yum_pkgs: "{{
-  ['git', 'python-pexpect', 'build-essential']
+  ['git', 'python-pexpect', 'telnet', 'build-essential', 'ccache']
   }}"
 
 # Package to be installed (explicit version can be specified here)
