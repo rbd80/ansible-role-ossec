@@ -2,13 +2,25 @@
 ###########################################################################
 # INSTALLATION                                                            #
 ###########################################################################
-- name: "Install packages for OSSEC agent"
-  action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
-  with_items:
-    - gcc
-    - httpd
-    - telnet
+- name: Install packages for OSSEC agent
+  package:
+    name: "{{ item }}"
+  with_items: "{{ ossec_apt_pkgs }}"
+  notify:
+    - Restart OSSEC service
+  tags:
+    - ossec_pkgs
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install packages for OSSEC agent
+  package:
+    name: "{{ item }}"
+  with_items: "{{ ossec_yum_pkgs }}"
+  notify:
+    - Restart OSSEC service
+  tags:
+    - ossec_pkgs
+  when: ansible_pkg_mgr == "yum"
 
 - name: "Ensure OSSEC src / tmp directories exist"
   stat:
@@ -111,9 +123,3 @@
 
 #- name: Make sure a service is running
 #  systemd: state=started name=httpd
-
-- name: "Remove packages for OSSEC agent"
-  action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=absent
-  with_items:
-    - gcc
