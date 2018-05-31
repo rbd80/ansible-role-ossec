@@ -2,7 +2,7 @@
 ###########################################################################
 # INSTALLATION                                                            #
 ###########################################################################
-- name: Install packages for OSSEC agent
+- name: Install packages via apt for OSSEC agent
   package:
     name: "{{ item }}"
   with_items: "{{ ossec_apt_pkgs }}"
@@ -12,7 +12,7 @@
     - ossec_pkgs
   when: ansible_pkg_mgr == "apt"
 
-- name: Install packages for OSSEC agent
+- name: Install packages via yum for OSSEC agent
   package:
     name: "{{ item }}"
   with_items: "{{ ossec_yum_pkgs }}"
