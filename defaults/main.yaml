@@ -15,7 +15,7 @@ ossec_apt_pkgs: "{{
   }}"
 
 ossec_yum_pkgs: "{{
-  ['gcc', 'apache2', 'telnet', 'build-essential', 'ccache']
+  ['git', 'python-pexpect', 'build-essential']
   }}"
 
 # Package to be installed (explicit version can be specified here)
