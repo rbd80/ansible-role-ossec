@@ -20,7 +20,16 @@
     - Restart OSSEC service
   tags:
     - ossec_pkgs
-  when: ansible_pkg_mgr == "yum"
+  when: ansible_pkg_mgr == "yum" and ansible_distribution != "Amazon"
+
+- name: "Install packages for OSSEC agent"
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - gcc
+    - httpd
+    - telnet
+  when: ansible_distribution == "Amazon"
 
 - name: "Ensure OSSEC src / tmp directories exist"
   stat:
